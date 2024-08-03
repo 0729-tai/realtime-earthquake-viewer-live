@@ -23,9 +23,9 @@
 </head>
 <body>
     <div id="settings">
-        <h1>ビューアーIDを設定</h1>
-        <input type="text" id="viewerId" placeholder="ビューアーIDを入力">
-        <button onclick="saveViewerId()">保存</button>
+        <h1>動画IDを設定</h1>
+        <input type="text" id="videoId" placeholder="動画IDを入力">
+        <button onclick="saveVideoId()">保存</button>
     </div>
     <script>
         const correctPassword = 'catkami';
@@ -40,10 +40,10 @@
             }
         }
 
-        function saveViewerId() {
-            const viewerId = document.getElementById('viewerId').value;
-            localStorage.setItem('viewerId', viewerId);
-            alert('ビューアーIDが保存されました');
+        function saveVideoId() {
+            const videoId = document.getElementById('videoId').value;
+            localStorage.setItem('videoId', videoId);
+            alert('動画IDが保存されました');
         }
 
         checkPassword();

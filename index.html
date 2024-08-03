@@ -21,12 +21,12 @@
     </style>
 </head>
 <body>
-    <iframe id="earthquake-iframe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe id="youtube-iframe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <script>
-        function getViewerId() {
-            return localStorage.getItem('viewerId') || 'defaultViewerId'; // デフォルトのビューアーID
+        function getVideoId() {
+            return localStorage.getItem('videoId') || '9AkQoVai5Ug'; // デフォルトの動画ID
         }
-        document.getElementById('earthquake-iframe').src = "https://example.com/earthquake-viewer?id=" + getViewerId() + "&origin=https://sushida.net/";
+        document.getElementById('youtube-iframe').src = "https://www.youtube.com/embed/" + getVideoId() + "?autoplay=1&origin=https://sushida.net/";
     </script>
 </body>
 </html>
