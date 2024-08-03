@@ -19,6 +19,11 @@
             flex-direction: column;
             align-items: center;
         }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
         iframe {
             width: 100%;
             height: 315px; /* 高さは適宜調整 */
@@ -28,30 +33,41 @@
 </head>
 <body>
     <div id="settings">
-        <h1>プレイリストを表示</h1>
-        <button onclick="showPlaylist()">表示</button>
+        <h1>設定ページ</h1>
+        <h2>動画IDを設定</h2>
+        <input type="text" id="videoId" placeholder="動画IDを入力">
+        <button onclick="saveVideoId()">動画ID保存</button>
+
         <div id="video-container">
             <iframe id="playlist-frame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
     <script>
         const correctPassword = 'catkami';
-        const PLAYLIST_ID = 'PL0jcXM0L2WZ91J5PAI6P2Qd7Zf-BKJLje'; // 固定プレイリストID
+        const playlistId = 'PL0jcXM0L2WZ91J5PAI6P2Qd7Zf-BKJLje'; // 固定プレイリストID
 
         function checkPassword() {
             const password = prompt('パスワードを入力してください:');
             if (password === correctPassword) {
                 document.getElementById('settings').style.display = 'flex';
-                document.getElementById('playlist-frame').src = `https://www.youtube.com/embed/videoseries?list=${PLAYLIST_ID}`;
+                const savedVideoId = localStorage.getItem('videoId') || '9AkQoVai5Ug'; // デフォルトの動画ID
+                document.getElementById('playlist-frame').src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
             } else {
                 alert('パスワードが違います');
                 checkPassword(); // パスワードが違う場合、再度プロンプトを表示
             }
         }
 
-        function showPlaylist() {
-            document.getElementById('playlist-frame').src = `https://www.youtube.com/embed/videoseries?list=${PLAYLIST_ID}`;
-            alert('プレイリストが表示されます');
+        function saveVideoId() {
+            const videoId = document.getElementById('videoId').value;
+            if (videoId) {
+                localStorage.setItem('videoId', videoId);
+                alert('動画IDが保存されました');
+                const iframe = document.getElementById('playlist-frame');
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&origin=https://sushida.net/`;
+            } else {
+                alert('動画IDを入力してください。');
+            }
         }
 
         checkPassword();
