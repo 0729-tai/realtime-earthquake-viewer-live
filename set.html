@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設定ページ</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #settings {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="settings">
+        <h1>ビューアーIDを設定</h1>
+        <input type="text" id="viewerId" placeholder="ビューアーIDを入力">
+        <button onclick="saveViewerId()">保存</button>
+    </div>
+    <script>
+        const correctPassword = 'catkami';
+
+        function checkPassword() {
+            const password = prompt('パスワードを入力してください:');
+            if (password === correctPassword) {
+                document.getElementById('settings').style.display = 'flex';
+            } else {
+                alert('パスワードが違います');
+                checkPassword(); // パスワードが違う場合、再度プロンプトを表示
+            }
+        }
+
+        function saveViewerId() {
+            const viewerId = document.getElementById('viewerId').value;
+            localStorage.setItem('viewerId', viewerId);
+            alert('ビューアーIDが保存されました');
+        }
+
+        checkPassword();
+    </script>
+</body>
+</html>
